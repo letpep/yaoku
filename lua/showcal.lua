@@ -16,7 +16,7 @@
 			end
                         )
 		ngx.log(ngx.ERR,"res",resf)
-		if resf then 
+		if resf then
 			contentkey = resf
 		end
 	end
@@ -31,4 +31,4 @@
 			ngx.log(ngx.ERROR,"inc show counts ERROR content:",value)
 		end
 	end
-	
+
