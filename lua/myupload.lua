@@ -27,7 +27,7 @@ string.trim = function(s)
 end
 
 -- 文件保存的根路径
-local saveRootPath = "/home/nginx/openresty/nginx/html/upload/"
+local saveRootPath = "/home/nginx/openresty/nginx/upload/"
 
 -- 保存的文件对象
 local fileToSave
