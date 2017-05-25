@@ -8,19 +8,16 @@
 	local red = redis.new()
 	local resf = nil
 	local errf = nil
-	ngx.log(ngx.ERR,"value",value)
 	if value then
 		resf, errf = red:exec(
                         function(red)
                       return red:hget(fhashkey,value)
 			end
                         )
-		ngx.log(ngx.ERR,"res",resf)
 		if resf then
 			contentkey = resf
 		end
 	end
-	ngx.log(ngx.ERR,"contentkey",contentkey)
 	if contentkey then
 		local res, err = red:exec(
                         function(red)
