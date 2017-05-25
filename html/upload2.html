@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File upload example</title>
+<script type="text/javascript" >
+
+
+
+
+		$.ajax({
+              
+                type: "POST",
+                url:'http://codeh.xyz/upfile',
+                data:$('#upfile').serialize(),// 你的formid
+                success: function(data) {	
+             	alert(data)
+                }
+            });
+
+
+</script>
+</head>
+<body>
+    <form action="upfile" method="post" enctype="multipart/form-data" id="upfile">
+        <label for="testFileName">select file: </label>
+        <input type="file" name="testFileName"/>
+        <input type="submit" name="upload" value="Upload" />
+    </form>
+</body>
+</html>
+
