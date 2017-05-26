@@ -33,7 +33,7 @@
                 )
 		totalnum = rest
 		pagestart = (pageno-1)*pagecount 
-		pageend = pagestart+pagecount
+		pageend = pagestart+pagecount -1
 		 res, err = red:exec(
         		function(red)
         	return red:zrevrange(rdskey ,pagestart,pageend,withscores)
@@ -55,6 +55,7 @@
         outputinfo[key] = value
 	outputinfo["totalnum"] = totalnum
 	outputinfo["pageno"] = pageno
+	outputinfo["pagecount"] = pagecount
         table.insert (output,json.encode(outputinfo))
         --table.insert (output,outputinfo)
 	--table.insert (output,");")

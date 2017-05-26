@@ -321,8 +321,9 @@
                     }
 
                     var totalNum = data.totalnum;
+                    var pagecount = data.pagecount;
                     if (!hasPaginationInit)
-                        initPaginationCom(totalNum);
+                        initPaginationCom(totalNum,pagecount);
                 },"json"
             );
         }
@@ -331,9 +332,9 @@
             loadData(new_page_index+1);
         }
 
-        function initPaginationCom(totalNum) {
+        function initPaginationCom(totalNum,pagecount) {
             $('#paginationCom').pagination(totalNum,{
-                items_per_page:9,
+                items_per_page:pagecount,
                 callback:handlePaginationClick
             });
             hasPaginationInit = true;
