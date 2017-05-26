@@ -56,6 +56,7 @@
         outputinfo[key] = value
 	outputinfo["totalnum"] = totalnum
 	outputinfo["pageno"] = pageno
+	outputinfo["pagecount"] = pagecount
         table.insert (output,json.encode(outputinfo))
         --table.insert (output,outputinfo)
 	--table.insert (output,");")
