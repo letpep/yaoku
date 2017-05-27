@@ -49,7 +49,7 @@
                         return red:get(rdskey)
                         end
                         )
-	 			local valueinner = json.decode(ress);
+	 			local valueinner = json.decode(ress)
 		ngx.log(ngx.ERR,"valueinner",valueinner)
 		table.insert(value,valueinner)
 	end
