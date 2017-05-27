@@ -49,7 +49,8 @@
                         return red:get(rdskey)
                         end
                         )
-		table.insert(value,json.decode(ress))
+	 			local valueinner = json.decode(ress);
+		table.insert(value,valueinner)
 	end
 	key = "value";
         outputinfo[key] = value
