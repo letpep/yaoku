@@ -11,7 +11,7 @@
     local outputinfo = {}
     local totalnum = 0
     local pageno = 1
-    local pagecount =8
+    local pagecount =5
     local pagestart = 0 
     local pageend = 0 
     --table.insert(output,"cb")
