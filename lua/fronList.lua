@@ -57,7 +57,7 @@
 					return red:zscore(showRdskey,rdskey)
 				end
 		 )
-		valueinner["shows"] = res
+		valueinner["shows"] = ""..res
 		table.insert(value,valueinner)
 	end
 	key = "value";
