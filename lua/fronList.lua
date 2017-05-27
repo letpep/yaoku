@@ -50,6 +50,7 @@
                         end
                         )
 	 			local valueinner = json.decode(ress);
+		ngx.log(ngx.ERR,"valueinner",valueinner)
 		table.insert(value,valueinner)
 	end
 	key = "value";
