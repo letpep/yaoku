@@ -238,22 +238,114 @@
     <style id='mobiSearchStyleModule'>
     </style>
 
-<!-- 搜索框样式 -->
+    <!-- 搜索框样式 -->
     <style>
-    .search-box{background-color:#f0f0f5;padding:0.714em;margin-bottom:.5rem;font-size:.6rem;}
-.form .formMiddle .search{width:100%;height:2.5em;margin:auto!important;border:none!important;background:none!important;}
-.input-box{float:left;width:79%;position:relative;z-index:2;}
-.ui-search-input{width:100%;height:100%;border-radius:1.785em 0 0 1.785em;background-color:#ffffff;}
-.ui-input-search input{display: inline-block;height:2.357em;line-height:1.285em;border:0 none;width:14.285em;font-size:1em;font-family:"microsoft yahei";color:#333333;padding-left:1em;}
-.sch-btn{width:20%;border-top:1px solid #69af05;line-height:2.062em;border-right:1px solid #69af05;border-bottom:1px solid #69af05;border-radius:0 1.785em 1.785em 0;float:left;color:#ffffff;text-align:center;font-size:1.142em;background-color:#69af05;cursor:pointer;}
-.input-sch::-webkit-input-placeholder {color:#999999;}/* WebKit browsers */
-.input-sch:-moz-placeholder {color:#999999;}/* Mozilla Firefox 4 to 18 */
-.input-sch::-moz-placeholder {color:#999999;}/* Mozilla Firefox 19+ */
-.input-sch:-ms-input-placeholder {color:#999999;}/* Internet Explorer 10+ */
-.input-box .cancl{font-size:1.142em;color:#b2b2b2;}
-.input-box .sch-i{display: inline-block;background:url(../images/searchicon.png) no-repeat;background-size:7.15em 9.642em;width:1.142em;height:1.285em;margin-left:1.071em;vertical-align:middle;}
-.search-tab span{float:left;width:50%;height:2.5em;border-bottom:0.178em solid #e2e2e7;color:#999999;text-align:center;line-height:2.5em;cursor:pointer;}
-.search-tab span.curr{border-bottom:0.178em solid #69af05;color:#69af05;}
+        .search-box {
+            background-color: #f0f0f5;
+            padding: 0.714em;
+            margin-bottom: .5rem;
+            font-size: .6rem;
+        }
+
+        .form .formMiddle .search {
+            width: 100%;
+            height: 2.5em;
+            margin: auto !important;
+            border: none !important;
+            background: none !important;
+        }
+
+        .input-box {
+            float: left;
+            width: 79%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ui-search-input {
+            width: 100%;
+            height: 100%;
+            border-radius: 1.785em 0 0 1.785em;
+            background-color: #ffffff;
+        }
+
+        .ui-input-search input {
+            display: inline-block;
+            height: 2.357em;
+            line-height: 1.285em;
+            border: 0 none;
+            width: 14.285em;
+            font-size: 1em;
+            font-family: "microsoft yahei";
+            color: #333333;
+            padding-left: 1em;
+        }
+
+        .sch-btn {
+            width: 20%;
+            border-top: 1px solid #69af05;
+            line-height: 2.062em;
+            border-right: 1px solid #69af05;
+            border-bottom: 1px solid #69af05;
+            border-radius: 0 1.785em 1.785em 0;
+            float: left;
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.142em;
+            background-color: #69af05;
+            cursor: pointer;
+        }
+
+        .input-sch::-webkit-input-placeholder {
+            color: #999999;
+        }
+
+        /* WebKit browsers */
+        .input-sch:-moz-placeholder {
+            color: #999999;
+        }
+
+        /* Mozilla Firefox 4 to 18 */
+        .input-sch::-moz-placeholder {
+            color: #999999;
+        }
+
+        /* Mozilla Firefox 19+ */
+        .input-sch:-ms-input-placeholder {
+            color: #999999;
+        }
+
+        /* Internet Explorer 10+ */
+        .input-box .cancl {
+            font-size: 1.142em;
+            color: #b2b2b2;
+        }
+
+        .input-box .sch-i {
+            display: inline-block;
+            background: url(../images/searchicon.png) no-repeat;
+            background-size: 7.15em 9.642em;
+            width: 1.142em;
+            height: 1.285em;
+            margin-left: 1.071em;
+            vertical-align: middle;
+        }
+
+        .search-tab span {
+            float: left;
+            width: 50%;
+            height: 2.5em;
+            border-bottom: 0.178em solid #e2e2e7;
+            color: #999999;
+            text-align: center;
+            line-height: 2.5em;
+            cursor: pointer;
+        }
+
+        .search-tab span.curr {
+            border-bottom: 0.178em solid #69af05;
+            color: #69af05;
+        }
     </style>
 
 
@@ -265,11 +357,10 @@
     <!-- 系统特殊隐藏栏目隐藏头部、banner -->
 
     <!-- pagination com -->
-    <link href="css/pagination.css" rel="stylesheet">
-    <script src="ajaxjquery.pagination.js" type="text/javascript"></script>
+    <link href="pagination.css" rel="stylesheet">
+    <script src="jquery.pagination.js" type="text/javascript"></script>
 </head>
 <body faiscoMobi="true" id="g_body" class="g_locale2052 mobiCol3">
-
 
 
 <script type="text/javascript">
@@ -288,17 +379,19 @@
         var hasPaginationInit = false;
 
         function generateRow(url, subject, date) {
-            return "<div id='newsLine5' topClassName='top1' topSwitch='on' newsId='5' newsName='请编辑文章标题' class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>"+
-                "<div id='lineBody5' class='lineBody lineBodyTable'>"+
-                "<div class='linkTableCell'>"+
-                "<div class='linkTable'>"+
-                "<a hidefocus='true' href="+url+" target=_self>"+subject+"</a></div>"+
-                "</div>"+
-                "</div>"+
-                "<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel' onclick=''>"+
-                "<div class='ne_newsTime'>"+date+"</div>"+
-                "</div>"+
-                "</div>";
+            return "<div id='newsLine5' topClassName='top1' topSwitch='on' newsId='5' newsName='请编辑文章标题' class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>" +
+                    "<div id='lineBody5' class='lineBody lineBodyTable'>" +
+                    "<div class='linkTableCell'>" +
+                    "<div class='linkTable'>" +
+                    "<a hidefocus='true' href=" + url + " target=_self>" + subject + "</a></div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel' onclick=''>" +
+                    "<div class='ne_newsTime'>" + date + "</div>" +
+                    "<div style='float:right;letter-spacing:0rem;font-size: .45rem;margin-top: .3rem;'>浏览数（111）" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
         }
 
         function generateSeparatorLine() {
@@ -307,36 +400,36 @@
 
         function loadData(page) {
             $.get(
-                "http://codeh.xyz/focusList?pageno="+page,
-                {},
-                function (data) {
-                    var htmlstring = '';
+                    "http://codeh.xyz/focusList?pageno=" + page,
+                    {},
+                    function (data) {
+                        var htmlstring = '';
 
-                    if(data.value.length != 0){
-                        var arr = data.value;
-                        for(ix in arr){
-                            htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date) + generateSeparatorLine();
+                        if (data.value.length != 0) {
+                            var arr = data.value;
+                            for (ix in arr) {
+                                htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date) + generateSeparatorLine();
+                            }
+                            $('#newsList302').html(htmlstring);
                         }
-                        $('#newsList302').html(htmlstring);
-                    }
 
-                    var totalNum = data.totalnum;
-                    var pagecount = data.pagecount;
-                    if (!hasPaginationInit)
-                        initPaginationCom(totalNum,pagecount);
-                },"json"
+                        var totalNum = data.totalnum;
+                        var pagecount = data.pagecount;
+                        if (!hasPaginationInit)
+                            initPaginationCom(totalNum, pagecount);
+                    }, "json"
             );
         }
 
         function handlePaginationClick(new_page_index, pagination_container) {
-            loadData(new_page_index+1);
+            loadData(new_page_index + 1);
         }
 
-        function initPaginationCom(totalNum,pagecount) {
-            $('#paginationCom').pagination(totalNum,{
-                items_per_page:pagecount,
-                callback:handlePaginationClick,
-                num_display_entries:5
+        function initPaginationCom(totalNum, pagecount) {
+            $('#paginationCom').pagination(totalNum, {
+                items_per_page: pagecount,
+                callback: handlePaginationClick,
+                num_display_entries: 5
             });
             hasPaginationInit = true;
         }
@@ -413,35 +506,69 @@
                                 <div class="cubeNavigationArea cubeNavigationArea7" value="7" id="cubeNavigation303">
                                     <div class="search-box">
                                         <div class="search">
-                                          <div class="input-box">
-                                            <div class="ui-search-input">
-                                            <form action="/search/doSearch" id="search-form" method="get" data-ajax="false">
-                                                 <input value="1" name="inputBox" type="hidden">
-                                                 <input value="true" name="isStock" type="hidden">
-                                                 <div class="ui-input-search ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear"><input id="search-keyword" name="keywords" value="" class="input-sch ac_input" type="text" data-type="search" placeholder="请输入关键字"></div>
-                                                         </form>
+                                            <div class="input-box">
+                                                <div class="ui-search-input">
+                                                    <form action="/search/doSearch" id="search-form" method="get"
+                                                          data-ajax="false">
+                                                        <input value="1" name="inputBox" type="hidden">
+                                                        <input value="true" name="isStock" type="hidden">
+                                                        <div class="ui-input-search ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+                                                            <input id="search-keyword" name="keywords" value=""
+                                                                   class="input-sch ac_input" type="text"
+                                                                   data-type="search" placeholder="请输入关键字"></div>
+                                                    </form>
+                                                </div>
                                             </div>
-                                          </div>
-                                          <div class="sch-btn">搜索</div>
+                                            <div class="sch-btn">搜索</div>
                                         </div>
-                                      </div>
-<div class="cubeLink_row"><div class="cubeLink cubeLink1 " id="cubeNavigation303_cubeLink1" linkid="1"><a class="cubeLink_a " href="javascript:;" style="cursor: default; " id="cubeLink_a1_cubeNav303">
-<div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">政策1<p class="cubeLink_subText_p"></p>
-</div></div>
-</a></div><div class="cubeLink cubeLink2 " id="cubeNavigation303_cubeLink2" linkid="2" ><a class="cubeLink_a " href="javascript:;" style="cursor: default; " id="cubeLink_a2_cubeNav303">
-<div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">政策2<p class="cubeLink_subText_p"></p>
-</div></div>
-</a></div><div class="cubeLink cubeLink3 " id="cubeNavigation303_cubeLink3" linkid="3" ><a class="cubeLink_a " href="javascript:;" style="cursor: default;" id="cubeLink_a3_cubeNav303">
-<div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">政策2<p class="cubeLink_subText_p"></p>
-</div></div>
-</a></div><div class="cubeLink cubeLink4 " id="cubeNavigation303_cubeLink4" linkid="4" ><a class="cubeLink_a " href="javascript:;" style="cursor: default; " id="cubeLink_a4_cubeNav303">
-<div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">政策4<p class="cubeLink_subText_p"></p>
-</div></div>
-</a></div></div></div>
+                                    </div>
+                                    <div class="cubeLink_row">
+                                        <div class="cubeLink cubeLink1 " id="cubeNavigation303_cubeLink1" linkid="1"><a
+                                                class="cubeLink_a " href="javascript:;" style="cursor: default; "
+                                                id="cubeLink_a1_cubeNav303">
+                                            <div class="cubeLink_bg "></div>
+                                            <div class="cubeLink_curtain"></div>
+                                            <div class="cubeLink_ico icon-cube"></div>
+                                            <div class="cubeLink_text g_link">
+                                                <div class="cubeLink_text_p ">政策1<p class="cubeLink_subText_p"></p>
+                                                </div>
+                                            </div>
+                                        </a></div>
+                                        <div class="cubeLink cubeLink2 " id="cubeNavigation303_cubeLink2" linkid="2"><a
+                                                class="cubeLink_a " href="javascript:;" style="cursor: default; "
+                                                id="cubeLink_a2_cubeNav303">
+                                            <div class="cubeLink_bg "></div>
+                                            <div class="cubeLink_curtain"></div>
+                                            <div class="cubeLink_ico icon-cube"></div>
+                                            <div class="cubeLink_text g_link">
+                                                <div class="cubeLink_text_p ">政策2<p class="cubeLink_subText_p"></p>
+                                                </div>
+                                            </div>
+                                        </a></div>
+                                        <div class="cubeLink cubeLink3 " id="cubeNavigation303_cubeLink3" linkid="3"><a
+                                                class="cubeLink_a " href="javascript:;" style="cursor: default;"
+                                                id="cubeLink_a3_cubeNav303">
+                                            <div class="cubeLink_bg "></div>
+                                            <div class="cubeLink_curtain"></div>
+                                            <div class="cubeLink_ico icon-cube"></div>
+                                            <div class="cubeLink_text g_link">
+                                                <div class="cubeLink_text_p ">政策2<p class="cubeLink_subText_p"></p>
+                                                </div>
+                                            </div>
+                                        </a></div>
+                                        <div class="cubeLink cubeLink4 " id="cubeNavigation303_cubeLink4" linkid="4"><a
+                                                class="cubeLink_a " href="javascript:;" style="cursor: default; "
+                                                id="cubeLink_a4_cubeNav303">
+                                            <div class="cubeLink_bg "></div>
+                                            <div class="cubeLink_curtain"></div>
+                                            <div class="cubeLink_ico icon-cube"></div>
+                                            <div class="cubeLink_text g_link">
+                                                <div class="cubeLink_text_p ">政策4<p class="cubeLink_subText_p"></p>
+                                                </div>
+                                            </div>
+                                        </a></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class='middleRight middleRight303'>
@@ -467,23 +594,23 @@
                         </div>
                         <div class='middleCenter middleCenter302'>
                             <div class='formMiddleContent formMiddleContent302 moduleContent'>
-                                <div class='newsList ' id='newsList302' >
+                                <div class='newsList ' id='newsList302'>
                                     <!--<div id='newsLine5' topClassName='top1' topSwitch='on' newsId='5' newsName='请编辑文章标题'-->
-                                         <!--class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>-->
-                                        <!--<div id='lineBody5' class='lineBody lineBodyTable'>-->
-                                            <!--<div class='linkTableCell'>-->
-                                                <!--<div class='linkTable'>-->
-                                                    <!--<a hidefocus='true' href='' target=_self>请编辑文章标题</a></div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                        <!--<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel'-->
-                                             <!--onclick='window.location.href="nd.jsp?mid=302&id=5&groupId=0&typeList=%5B%5D"'>-->
-                                            <!--<div class='ne_newsTime'>2017/05/22</div>-->
-                                        <!--</div>-->
+                                    <!--class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>-->
+                                    <!--<div id='lineBody5' class='lineBody lineBodyTable'>-->
+                                    <!--<div class='linkTableCell'>-->
+                                    <!--<div class='linkTable'>-->
+                                    <!--<a hidefocus='true' href='' target=_self>请编辑文章标题</a></div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel'-->
+                                    <!--onclick='window.location.href="nd.jsp?mid=302&id=5&groupId=0&typeList=%5B%5D"'>-->
+                                    <!--<div class='ne_newsTime'>2017/05/22</div>-->
+                                    <!--</div>-->
                                     <!--</div>-->
                                     <!--<div class='g_separator separatorLine'></div>-->
                                 </div>
-                                <div id="paginationCom" ></div>
+                                <div id="paginationCom"></div>
                             </div>
                         </div>
                         <div class='middleRight middleRight302'>
@@ -893,7 +1020,6 @@
             "filePath": ""
         }]; //商城主题在线客服
         Fai.top._mallService = 1;
-
 
 
         $(".textContent").click(function () {
