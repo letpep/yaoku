@@ -265,8 +265,8 @@
     <!-- 系统特殊隐藏栏目隐藏头部、banner -->
 
     <!-- pagination com -->
-    <link href="css/pagination.css" rel="stylesheet">
-    <script src="ajax/jquery.pagination.js" type="text/javascript"></script>
+    <link href="pagination.css" rel="stylesheet">
+    <script src="jquery.pagination.js" type="text/javascript"></script>
 </head>
 <body faiscoMobi="true" id="g_body" class="g_locale2052 mobiCol3">
 
@@ -335,7 +335,8 @@
         function initPaginationCom(totalNum,pagecount) {
             $('#paginationCom').pagination(totalNum,{
                 items_per_page:pagecount,
-                callback:handlePaginationClick
+                callback:handlePaginationClick,
+                num_display_entries:5
             });
             hasPaginationInit = true;
         }
@@ -892,181 +893,6 @@
             "filePath": ""
         }]; //商城主题在线客服
         Fai.top._mallService = 1;
-
-        (document).ready(function () {
-
-
-            Mobi.ajaxLoadModuleDom(3, 0, {"_ajaxLoadModuleListId": [], "topBarOptionInfo": {"mobiMallOpen": false}});
-
-
-            //判断该栏目是否被删除
-            if (jm.isEmptyObject(Fai.top._colInfo)) {
-                alert("该栏目已经删除，点击确定后，将返回到首页");
-                document.location.href = "/index.jsp"
-            }
-            //Mobi.viewPageBeforeInit();
-            // 绑定退出事件
-            jm(window).bind("load", function () {
-
-//当前模块 start
-
-                //Mobi.initSwipe('bannerSwipe',{"showType":3,"bn":1,"b":[{"i":"AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI","t":1,"lt":0,"u":"","ide":"","col":0,"aj":"","tp":"http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg","p":"http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!640x640.jpg","w":640,"h":300}],"c":[{"i":"AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI","p":"http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI.jpg","t":1,"tp":"http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg","w":640,"h":300}],"h":false,"st":6,"et":1});
-                if (!Mobi.bannerAnimate.init({
-                        "showType": 3,
-                        "bn": 1,
-                        "b": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "t": 1,
-                            "lt": 0,
-                            "u": "",
-                            "ide": "",
-                            "col": 0,
-                            "aj": "",
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!640x640.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "c": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI.jpg",
-                            "t": 1,
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "h": false,
-                        "st": 6,
-                        "et": 1
-                    })) {
-                    Mobi.initBannerDefaultDom({
-                        "showType": 3,
-                        "bn": 1,
-                        "b": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "t": 1,
-                            "lt": 0,
-                            "u": "",
-                            "ide": "",
-                            "col": 0,
-                            "aj": "",
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!640x640.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "c": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI.jpg",
-                            "t": 1,
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "h": false,
-                        "st": 6,
-                        "et": 1
-                    });
-                    Mobi.initSwipe('bannerSwipe', {
-                        "showType": 3,
-                        "bn": 1,
-                        "b": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "t": 1,
-                            "lt": 0,
-                            "u": "",
-                            "ide": "",
-                            "col": 0,
-                            "aj": "",
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!640x640.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "c": [{
-                            "i": "AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI",
-                            "p": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI.jpg",
-                            "t": 1,
-                            "tp": "http://11213165.s61i.faiusr.com/2/AD0I7bKsBRACGAAgptW1wQUosPXU7QQwgAU4rAI!100x100.jpg",
-                            "w": 640,
-                            "h": 300
-                        }],
-                        "h": false,
-                        "st": 6,
-                        "et": 1
-                    });
-                }
-                ;
-
-                //调整导航栏与g_web的top值
-                //部分主题有css3动画，所以会导致计算失误，需要等css3动画执行完之后计算
-                Mobi.autoFixGWebTop(2);
-
-
-                Mobi.initBgmCookie();
-
-
-                Mobi.initFooterHeight();
-            });
-
-            //手机视图初始化函数
-            Mobi.initMobiPage({
-                "id": 1011,
-                "createTime": "2015-03-16",
-                "preview": "http://mo.faisys.com/image/template/1011/1011.jpg",
-                "previewGif": "http://mo.faisys.com/image/template/1011/1011.gif",
-                "color": 0,
-                "style": ["http://mo.faisys.com/css/template/1011_1.min.css?v=201612121825", "http://mo.faisys.com/css/template/1011_2.min.css?v=201612121825", "http://mo.faisys.com/css/template/1011_3.min.css?v=201612121825", "http://mo.faisys.com/css/template/1011_4.min.css?v=201612121825", "http://mo.faisys.com/css/template/1011_5.min.css?v=201612121825"],
-                "type": 1,
-                "moduleStyle": 0,
-                "designType": 1,
-                "presetIndex": 0,
-                "cube": 0,
-                "layout": 2,
-                "imagePage": 347,
-                "backgroundImage": 0,
-                "colors": [],
-                "colorsName": []
-            });
-
-            // 取统计数据
-            if (true) {
-
-
-                Mobi.statisticalMobiVisitors({colId: 3, pdId: -1, ndId: -1, sc: 0, rf: ""});
-                if (!false) {
-                    //统计访问时长
-                    Mobi.mobiStatVisitTime();
-                }
-            }
-
-            //前端性能数据上报
-            Mobi.report();
-
-            Mobi.initShare('footerShareWeixin', 'footerShareWeibo', 'footerShareQQ');
-            Mobi.initFooterLanguageEvent();
-            Mobi.showQqBg();
-            Mobi.showPhonesBg();
-            Mobi.unLoadForWechat();
-            Mobi.setShowSiteTitleBgFlag('0');
-            Mobi.changeSiteTitleBg('null', 'null', 'null', 'null', 'null');
-            Mobi.logoSizeCompressByMargin();
-            Mobi.titlePositionRefreshByLogo();
-            Mobi.loadImgAlone(303);
-            Mobi.fixIphoneMargin({moduleId: 302});
-            Mobi.manageFaiscoAd(2);
-
-
-        });
-        //Mobi.preventScroll(document.getElementById("g_body"));//阻止滚轮事件冒泡
-
-        //访客态下，统计微信浏览器的使用情况
-
-        if (Mobi.isWechat()) {
-            Mobi.logDog(200055, 1);
-        } else {
-            Mobi.logDog(200055, 0);
-        }
 
         $(".textContent").click(function () {
             $(this).addClass("on").siblings().removeClass("on");
