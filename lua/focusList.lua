@@ -3,6 +3,7 @@
     local redis = require("resty.rediscli-letpep")
     local json = require("cjson")
     local request_method = ngx.var.request_method
+	local showRdskey = "content_shows_set"
     local args = nil
     local res = nil
     local err = nil
@@ -50,7 +51,15 @@
                         return red:get(rdskey)
                         end
                         )
-		table.insert(value,json.decode(ress))
+		local valueinner = json.decode(ress)
+		--获取主题的浏览数
+		local res, err = red:exec(
+			function(red)
+				return red:zscore(showRdskey,rdskey)
+			end
+		)
+		valueinner["shows"] = ""..res
+		table.insert(value,valueinner)
 	end
 	key = "value";
         outputinfo[key] = value

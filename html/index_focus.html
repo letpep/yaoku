@@ -287,7 +287,7 @@
 
         var hasPaginationInit = false;
 
-        function generateRow(url, subject, date) {
+        function generateRow(url, subject, date,shows) {
             return "<div id='newsLine5' topClassName='top1' topSwitch='on' newsId='5' newsName='请编辑文章标题' class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>"+
                 "<div id='lineBody5' class='lineBody lineBodyTable'>"+
                 "<div class='linkTableCell'>"+
@@ -297,7 +297,7 @@
                 "</div>"+
                 "<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel' onclick=''>"+
                 "<div class='ne_newsTime fl'>"+date+"</div>"+
-                "<div style='float:right;letter-spacing:0rem;font-size: .45rem;margin-top: .3rem;'>浏览数（111）"+
+                "<div style='float:right;letter-spacing:0rem;font-size: .45rem;margin-top: .3rem;'>浏览数（"+shows+"）"+
                 "</div>"+
                 "</div>"+
                 "</div>";
@@ -317,7 +317,7 @@
                     if(data.value.length != 0){
                         var arr = data.value;
                         for(ix in arr){
-                            htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date) + generateSeparatorLine();
+                            htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date,arr[ix].shows) + generateSeparatorLine();
                         }
                         $('#newsList302').html(htmlstring);
                     }
