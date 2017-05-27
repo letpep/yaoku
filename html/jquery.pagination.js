@@ -1,4 +1,4 @@
-pagination.css/**
+/**
  * This jQuery plugin displays pagination links inside the selected elements.
  * 
  * This plugin needs at least jQuery 1.4.2
