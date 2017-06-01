@@ -32,7 +32,7 @@ local res = ngx.location.capture('/postgres',
 )
 
 local status = res.status
-local body = json.decode(res.body)
+local body = res.body
 ngx.say(body)
 
 
