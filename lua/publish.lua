@@ -76,7 +76,8 @@
 	resultt["res"]="ok"
 --插入数据库
 local res = ngx.location.capture('/postgres',
-	{ args = {sql = "insert into yaoku_subject(subject,url) values("..subject..","..url..")" } }
+	--{ args = {sql = "insert into yaoku_subject(subject,url) values("..subject..","..json.encode(url)..")" } }
+	{ args = {sql = "insert into yaoku_subject(subject,url) values('测试数据t2','http:223')" } }
 )
 
 local status = res.status
