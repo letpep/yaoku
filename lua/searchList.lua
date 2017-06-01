@@ -32,7 +32,10 @@ local res = ngx.location.capture('/postgres',
 )
 
 local status = res.status
-local body = res.body
-ngx.say(body)
+local body = json.decode(res.body)
+for i, v in ipairs(body) do
+    totalnum = v["count"]
+end
+ngx.say(totalnum)
 
 
