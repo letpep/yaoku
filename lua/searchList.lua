@@ -12,6 +12,9 @@ local pageno = 1
 local pagecount =5
 local pagestart = 0
 local findkey =""
+local value = {}
+local outputinfo = {}
+local output = {}
 if "GET" == request_method then
     local rdskey =nil
     args  = ngx.req.get_uri_args()
@@ -37,5 +40,17 @@ for i, v in ipairs(body) do
     totalnum = v["count"]
 end
 ngx.say(totalnum)
-
+local resc = ngx.location.capture('/postgres',
+    { args = {sql = "SELECT subject,url FROM yaoku_subject where subject like '%"..findkey.."%' limit"..pagecount .." offset "..pagestart.." ;" } }
+)
+local bodyc = json.decode(res.body)
+for i, v in ipairs(bodyc) do
+    table.insert(value,v)
+end
+outputinfo["value"] = value
+outputinfo["totalnum"] = totalnum
+outputinfo["pageno"] = pageno
+outputinfo["pagecount"] = pagecount
+table.insert (output,json.encode(outputinfo))
+ngx.say(table.concat(output,""))
 
