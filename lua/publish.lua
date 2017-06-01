@@ -71,7 +71,14 @@
                        red:zadd(rdssetkey,0,subjectkey)
                         end
                         )
-	ngx.log(ngx.ERR,"value",rdssetkey..subjectkey)
+
 	local resultt = {}
 	resultt["res"]="ok"
+--插入数据库
+local res = ngx.location.capture('/postgres',
+	{ args = {sql = "insert into yaoku_subject(subject,url) values("..subject..","..url..")" } }
+)
+
+local status = res.status
+ngx.log(ngx.ERR,"status",status)
 	ngx.say(json.encode(resultt))
