@@ -40,12 +40,12 @@
 	local rdskeycontent = "contents"
 	local res, err = red:exec(
 	function(red)
-		red:rem(rdssetkey,rdskey)
+		red:zrem(rdssetkey,rdskey)
 	end
 	)
 	local resc, errc = red:exec(
 	function(red)
-		red:rem(rdskeycontent,rdskey)
+		red:zrem(rdskeycontent,rdskey)
 	end
 	)
 --插入数据库
