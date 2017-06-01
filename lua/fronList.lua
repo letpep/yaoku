@@ -25,6 +25,8 @@
                 		rdskey = val
 			elseif "pageno" == key then
 				pageno = val
+            elseif "pagecount" == key then
+                        pagecount = val
 			end	
 		end
 		local rest, errt = red:exec(
