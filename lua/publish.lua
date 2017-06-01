@@ -50,7 +50,7 @@
                         end
                         )
 	local value ={}
-	value["subject"]='"'..subject..'"'
+	value["subject"]=''..subject..''
 	value["url"] = '"'..url..'"'
 	value["subjectid"] = '"'..subjectkey..'"'
 	value["date"] = '"'..date..'"'
