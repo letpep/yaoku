@@ -13,4 +13,4 @@
     else
         status = false
     end
-    ngx.say(body)
+    ngx.say(json.encode(body))
