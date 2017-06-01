@@ -29,7 +29,7 @@ if "GET" == request_method then
         end
 end
 
-pagestart = pageno*pagecount-1
+pagestart = (pageno-1)*pagecount
 local res = ngx.location.capture('/postgres',
     { args = {sql = "SELECT count(1) FROM yaoku_subject where subject like '%"..findkey.."%';" } }
 )
