@@ -7,6 +7,47 @@
     <title>File upload example</title>
 <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="upload.js"></script>
+<script type="text/javascript">
+	$(function () {
+
+        function delete_row(subjectid) {
+            $.get(
+                "http://codeh.xyz/contentdel?key="+subjectid,
+                {},
+                function () {
+                    generate_list();
+                },"text"
+            );
+        }
+
+	    function generate_row(subject, subjectid) {
+			return "<tr><td>"+subject+"</td><td><button name="+subjectid+">删除</button></td></tr>";
+        }
+
+        function generate_list() {
+            $.get(
+                "http://codeh.xyz/frontList?key=contents&pageno=1&pagecount=10",
+                {},
+                function (data) {
+                    var table_uploaded_files = $('#table_uploaded_files');
+                    var arr = data.value;
+                    var htmlStr = "";
+                    for (i in arr){
+                        htmlStr += generate_row(arr[i].subject, arr[i].subjectid);
+					}
+                    table_uploaded_files.html(htmlStr);
+                },"json"
+            );
+        }
+
+        generate_list();
+
+	    $('#table_uploaded_files').on("click","button", function () {
+	        var subjectid = $(this).attr("name");
+			delete_row(subjectid);
+        });
+    });
+</script>
 </head>
 <body>
 	<div>操作说明：1选择文件，然后点击upload，将文件 上传至服务器</div>
@@ -35,8 +76,12 @@
 			</tr>
 		</table>
 	</form>
-	
-	
+
+	<label for="table_uploaded_files">已上传概览:</label>
+
+	<table id="table_uploaded_files" border="1">
+
+	</table>
 	
 	
 </body>
