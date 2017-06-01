@@ -39,6 +39,8 @@ local body = json.decode(res.body)
 for i, v in ipairs(body) do
     totalnum = v["count"]
 end
+local sqli ="SELECT subject,url FROM yaoku_subject where subject like '%"..findkey.."%' limit"..pagecount .." offset "..pagestart.." ;"
+ngx.say(sqli)
 local resc = ngx.location.capture('/postgres',
     { args = {sql = "SELECT subject,url FROM yaoku_subject where subject like '%"..findkey.."%' limit"..pagecount .." offset "..pagestart.." ;" } }
 )
