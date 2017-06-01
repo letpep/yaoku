@@ -51,6 +51,7 @@
                         return red:get(rdskey)
                         end
                         )
+        ngx.log(ngx.ERR,"key:",rdskey)
         ngx.log(ngx.ERR,"ress:",ress)
 		local valueinner = json.decode(ress)
 		--获取主题的浏览数
