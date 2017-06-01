@@ -39,11 +39,10 @@ local body = json.decode(res.body)
 for i, v in ipairs(body) do
     totalnum = v["count"]
 end
-ngx.say(totalnum)
 local resc = ngx.location.capture('/postgres',
     { args = {sql = "SELECT subject,url FROM yaoku_subject where subject like '%"..findkey.."%' limit"..pagecount .." offset "..pagestart.." ;" } }
 )
-local bodyc = json.decode(res.body)
+local bodyc = json.decode(resc.body)
 for i, v in ipairs(bodyc) do
     table.insert(value,v)
 end
