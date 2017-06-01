@@ -40,7 +40,8 @@
 		 local kvurl = string.split(url, "/")
 		 filename = kvurl[table.getn(kvurl)]	
 	end
-	local date = os.date("%Y-%m-%d %X")
+	--local date = os.date("%Y-%m-%d %X") 2017-06-01 13:48:55
+	local date = os.date("%Y-%m-%d")
 	local rdsscore = os.time()- 1495535000
 	local subjectkey = subjectid..rdsscore
 	local res, err = red:exec(
