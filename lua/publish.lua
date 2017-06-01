@@ -42,17 +42,18 @@
 	end
 	local date = os.date("%Y-%m-%d %X")
 	local rdsscore = os.time()- 1495535000
+	local subjectkey = subjectid..rdsscore
 	local res, err = red:exec(
                         function(red)
-                       red:zadd(rdskey,rdsscore,subjectid..rdsscore)
+                       red:zadd(rdskey,rdsscore,subjectkey)
                         end
                         )
 	local value ={}
 	value["subject"]='"'..subject..'"'
 	value["url"] = '"'..url..'"'
+	value["subjectid"] = '"'..subjectkey..'"'
 	value["date"] = '"'..date..'"'
 	local subjectvalue = json.encode(value)
-	local subjectkey = subjectid..rdsscore
 	local res, err = red:exec(
                         function(red)
                        red:set(subjectkey,subjectvalue)
@@ -76,7 +77,7 @@
 	resultt["res"]="ok"
 --插入数据库
 local res = ngx.location.capture('/postgres',
-	{ args = {sql = "insert into yaoku_subject(subject,url) values('"..subject.."','"..url.."')" } }
+	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..")" } }
 )
 
 local status = res.status
