@@ -309,7 +309,7 @@
 
         function loadData(page) {
             $.get(
-                "http://codeh.xyz/frontList?key=contents&pageno="+page,
+                "http://codeh.xyz/focusList?pageno="+page,
                 {},
                 function (data) {
                     var htmlstring = '';
@@ -317,7 +317,7 @@
                     if(data.value.length != 0){
                         var arr = data.value;
                         for(ix in arr){
-                            htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date ,arr[ix].shows) + generateSeparatorLine();
+                            htmlstring += generateRow(arr[ix].url, arr[ix].subject, arr[ix].date,arr[ix].shows) + generateSeparatorLine();
                         }
                         $('#newsList302').html(htmlstring);
                     }
@@ -406,11 +406,11 @@
                                       </div>
 <div class="cubeLink_row"><div class="cubeLink cubeLink1 " id="cubeNavigation303_cubeLink1" linkid="1"><a class="cubeLink_a " href="javascript:;" style="cursor: default; " id="cubeLink_a1_cubeNav303">
 <div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p " style="color: #ff692b;">中药法规<p class="cubeLink_subText_p"></p>
+<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">中药法规<p class="cubeLink_subText_p"></p>
 </div></div>
 </a></div><div class="cubeLink cubeLink2 " id="cubeNavigation303_cubeLink2" linkid="2" ><a class="cubeLink_a " href="javascript:;" style="cursor: default; " id="cubeLink_a2_cubeNav303">
 <div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
-<div class="cubeLink_text g_link"><div class="cubeLink_text_p ">化药法规<p class="cubeLink_subText_p"></p>
+<div class="cubeLink_text g_link"><div class="cubeLink_text_p " style="color: #ff692b;">化药法规<p class="cubeLink_subText_p"></p>
 </div></div>
 </a></div><div class="cubeLink cubeLink3 " id="cubeNavigation303_cubeLink3" linkid="3" ><a class="cubeLink_a " href="javascript:;" style="cursor: default;" id="cubeLink_a3_cubeNav303">
 <div class="cubeLink_bg "></div><div class="cubeLink_curtain"></div><div class="cubeLink_ico icon-cube"></div>
@@ -430,8 +430,8 @@
                         <div class='titleCenter titleCenter302'>
                             <div class='titleText titleText302'>
                                 <div class='titleTextIcon icon-titleText'>&nbsp;</div>
-                                <div class='textContent on'>最新动态</div>
-                                <div class='textContent '><a style="color:#000;" href="index_focus_zyfg.html">热点排行</a></div>
+                                <div class='textContent '><a style="color:#000;" href="index_hyfg.html">最新动态</a></div>
+                                <div class='textContent on'>热点排行</div>
                             </div>
                         </div>
                         <div class='titleRight titleRight302'>
