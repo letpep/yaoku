@@ -1,8 +1,10 @@
 
 	--说明:当使用get方法时为查询缓存方法,当使用post方法时为更新缓存方法,为了获取post请求参数需要在location中写入: lua_need_request_body on;
     local redis = require("resty.rediscli-letpep")
+	local json = require("cjson")
     local request_method = ngx.var.request_method
     local args = nil
+	local cid = nil
 	local red = redis.new()
 	local rdskey = nil
  	if "GET" == request_method then
@@ -17,7 +19,9 @@
                         return red:get(rdskey)
                         end
                         )
-		ngx.say(res)
+		local valueinner = json.decode(res)
+		cid = valueinner["categoryid"]
+
 	elseif "POST" == request_method then
 		local rdsvalue = nil
 		args=ngx.req.get_post_args()
@@ -41,11 +45,18 @@
 	local res, err = red:exec(
 	function(red)
 		red:zrem(rdssetkey,rdskey)
+		if cid then
+			red:zrem(rdssetkey.."_"..cid,rdskey)
+		end
+
 	end
 	)
 	local resc, errc = red:exec(
 	function(red)
 		red:zrem(rdskeycontent,rdskey)
+		if cid then
+			red:zrem(rdskeycontent.."_"..cid,rdskey)
+		end
 	end
 	)
 --插入数据库
