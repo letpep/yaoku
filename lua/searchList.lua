@@ -24,7 +24,7 @@ if "GET" == request_method then
         elseif "pageno" == key then
             pageno = val
         elseif "pagecount" == key then
-            pagecount = val
+            pagecount = 5
         end
         end
 end
