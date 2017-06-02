@@ -31,7 +31,7 @@ end
 
 pagestart = (pageno-1)*pagecount
 local res = ngx.location.capture('/postgres',
-    { args = {sql = "SELECT count(1) FROM yaoku_subject where subject like '%"..findkey.."%';" } }
+    { args = {sql = "SELECT count(1) FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%';" } }
 )
 
 local status = res.status
@@ -41,7 +41,7 @@ for i, v in ipairs(body) do
 end
 if totalnum >0 then
 local resc = ngx.location.capture('/postgres',
-    { args = {sql = "SELECT subject,url FROM yaoku_subject where subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." ;" } }
+    { args = {sql = "SELECT subject,url FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." ;" } }
 )
 local bodyc = json.decode(resc.body)
 for i, v in ipairs(bodyc) do
