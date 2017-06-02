@@ -71,7 +71,7 @@
 	value["categoryid"]=''..cid..''
 	value["url"] = '"'..url..'"'
 	value["subjectid"] = '"'..subjectkey..'"'
-	value["date"] = '"'..date..'"'
+	value["date"] = ''..date..''
 	local subjectvalue = json.encode(value)
 	local res, err = red:exec(
                         function(red)
