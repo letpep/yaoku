@@ -285,22 +285,56 @@
 
     $(function () {
 
-        var hasPaginationInit = false;
+        ar hasPaginationInit = false;
+        var searchMode = false;
 
-        function generateRow(url, subject, date,shows) {
-            return "<div id='newsLine5' topClassName='top1' topSwitch='on' newsId='5' newsName='请编辑文章标题' class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>"+
-                "<div id='lineBody5' class='lineBody lineBodyTable'>"+
-                "<div class='linkTableCell'>"+
-                "<div class='linkTable'>"+
-                "<a hidefocus='true' href="+url+" target=_self>"+subject+"</a></div>"+
-                "</div>"+
-                "</div>"+
-                "<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel' onclick=''>"+
-                "<div class='ne_newsTime fl'>"+date+"</div>"+
-                "<div style='float:right;letter-spacing:0rem;font-size: .45rem;margin-top: .3rem;'>浏览数（"+shows+"）"+
-                "</div>"+
-                "</div>"+
-                "</div>";
+        function generate_simple_row(url, subject) {
+            return "<div id='lineBody5' class='lineBody lineBodyTable'>"+
+                    "<div class='linkTableCell'>"+
+                    "<div class='linkTable'>"+
+                    "<a hidefocus='true' href="+url+" target=_self>"+subject+"</a>" +
+                    "</div>"+
+                    "</div>"+
+                    "</div>";
+        }
+
+        function generate_extend_row(date, shows) {
+            return  "<div class='newsElementsPanel g_newsElementsPanel J_newsElementsPanel'>"+
+                    "<div class='ne_newsTime fl'>"+date+"</div>"+
+                    "<div style='float:right;letter-spacing:0rem;font-size: .45rem;margin-top: .3rem;'>浏览数（"+shows+"）</div>"+
+                    "</div>";
+        }
+        function generateRow(url, subject, date, shows) {
+            var line_start = "<div id='newsLine5' class='newsLine line icon-gline  wWLine  firstClass  wholeLine J_lineH j-lineH'>";
+            var line_end = "</div>";
+            var line = line_start + generate_simple_row(url, subject);
+            if (date !== null && shows !== null){
+                line +=generate_extend_row(date, shows);
+            }
+            return line+line_end;
+        }
+
+        function loadSearchData(keyword, pageno, pagecount) {
+            $.get(
+                    "http://codeh.xyz/searchList?findkey="+keyword+"&pageno="+pageno+"&pagecount="+pagecount,
+                    {},
+                    function (data) {
+                        var htmlstring = '';
+
+                        if(data.value.length !== 0){
+                            var arr = data.value;
+                            for(ix in arr){
+                                htmlstring += generateRow(arr[ix].url, arr[ix].subject, null, null) + generateSeparatorLine();
+                            }
+                            $('#newsList302').html(htmlstring);
+                        }
+
+                        var totalNum = data.totalnum;
+                        var pagecount = data.pagecount;
+                        if (searchMode && !hasPaginationInit)
+                            initSearchModePaginationCom(totalNum,pagecount);
+                    },"json"
+            );
         }
 
         function generateSeparatorLine() {
@@ -333,7 +367,10 @@
         function handlePaginationClick(new_page_index, pagination_container) {
             loadData(new_page_index+1);
         }
-
+        function handleSearchModePaginationClick(new_page_index) {
+            var keyword = $('#search-keyword').val();
+            loadSearchData(keyword, new_page_index + 1 ,3);
+        }
         function initPaginationCom(totalNum,pagecount) {
             $('#paginationCom').pagination(totalNum,{
                 items_per_page:pagecount,
@@ -343,7 +380,27 @@
             hasPaginationInit = true;
         }
 
+        function initSearchModePaginationCom(totalNum,pagecount) {
+            $('#paginationCom').pagination(totalNum,{
+                items_per_page:pagecount,
+                callback:handleSearchModePaginationClick,
+                num_display_entries:5,
+                load_first_page:false
+            });
+            hasPaginationInit = true;
+        }
         loadData(1);
+        $('#div_search_btn').click(function () {
+            hasPaginationInit = false;
+            var keyword = $('#search-keyword').val();
+            if (keyword === '' || keyword === null || keyword === undefined) {
+                searchMode = false;
+                loadData(1);
+                return;
+            }
+            searchMode = true;
+            loadSearchData(keyword, 1, 3);
+        });
 
     });
 
