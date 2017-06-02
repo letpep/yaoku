@@ -21,12 +21,12 @@
 	url = datat["lurl"]
 	cid = datat ["categoryid"]
 	if cid then
-		rdskey_cay = rdskey.."_"..categoryid
-		rdssetkey_cay = rdssetkey.."_"..categoryid
+		rdskey_cay = rdskey.."_"..cid
+		rdssetkey_cay = rdssetkey.."_"..cid
 	end
 
 
-	ngx.log(ngx.ERR,"categoryid:",categoryid)
+	ngx.log(ngx.ERR,"categoryid:",cid)
 	-- 字符串 split 分割
 	 string.split = function(s, p)
 	     local rt= {}
@@ -101,7 +101,7 @@
 	resultt["res"]="ok"
 --插入数据库
 local res = ngx.location.capture('/postgres',
-	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..categoryid.."')" } }
+	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."')" } }
 )
 
 local status = res.status
