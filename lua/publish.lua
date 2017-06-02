@@ -7,6 +7,7 @@
     local rdskey = "contents"
     local subjectid="subject_"
     local subject = nil
+	local categoryid =nil
     local url = ""
     local filename =nil
     local fhashkey = "fkeyhash"
@@ -15,6 +16,8 @@
 	local datat = json.decode(data)
 	subject = datat["subject"]
 	url = datat["lurl"]
+	categoryid = datat ["categoryid"]
+	ngx.log(ngx.ERR,"categoryid:",categoryid)
 	-- 字符串 split 分割
 	 string.split = function(s, p)
 	     local rt= {}
