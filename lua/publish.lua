@@ -5,9 +5,12 @@
     local request_method = ngx.var.request_method
     local args = nil
     local rdskey = "contents"
+	local rdskey_cay = nil
+	local rdssetkey = "content_shows_set"
+	local rdssetkey_cay =nil
     local subjectid="subject_"
     local subject = nil
-	local categoryid =nil
+	local cid =nil
     local url = ""
     local filename =nil
     local fhashkey = "fkeyhash"
@@ -16,7 +19,13 @@
 	local datat = json.decode(data)
 	subject = datat["subject"]
 	url = datat["lurl"]
-	categoryid = datat ["categoryid"]
+	cid = datat ["categoryid"]
+	if cid then
+		rdskey_cay = rdskey.."_"..categoryid
+		rdssetkey_cay = rdssetkey.."_"..categoryid
+	end
+
+
 	ngx.log(ngx.ERR,"categoryid:",categoryid)
 	-- 字符串 split 分割
 	 string.split = function(s, p)
@@ -52,8 +61,14 @@
                        red:zadd(rdskey,rdsscore,subjectkey)
                         end
                         )
+	local resc, errc = red:exec(
+		function(red)
+			red:zadd(rdskey_cay,rdsscore,subjectkey)
+		end
+	)
 	local value ={}
 	value["subject"]=''..subject..''
+	value["categoryid"]=''..cid..''
 	value["url"] = '"'..url..'"'
 	value["subjectid"] = '"'..subjectkey..'"'
 	value["date"] = '"'..date..'"'
@@ -70,12 +85,17 @@
                         end
                         )
 	end
-	local rdssetkey = "content_shows_set"
+
 			local res, err = red:exec(
                         function(red)
                        red:zadd(rdssetkey,0,subjectkey)
                         end
                         )
+		local rescc, errcc = red:exec(
+			function(red)
+				red:zadd(rdssetkey_cay,0,subjectkey)
+			end
+		)
 
 	local resultt = {}
 	resultt["res"]="ok"

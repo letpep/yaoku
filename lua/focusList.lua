@@ -4,6 +4,7 @@
     local json = require("cjson")
     local request_method = ngx.var.request_method
 	local showRdskey = "content_shows_set"
+	local cid = nil
     local args = nil
     local res = nil
     local err = nil
@@ -14,7 +15,7 @@
     local pageno = 1
     local pagecount =5
     local pagestart = 0 
-    local pageend = 0 
+    local pageend = 0
     local rdskey = "content_shows_set"
     --table.insert(output,"cb")
 	local red = redis.new()
@@ -25,7 +26,15 @@
                 		rdskey = val
 			elseif "pageno" == key then
 				pageno = val
+			elseif "pagecount" == key then
+				pagecount = val
+			elseif "cid" == key then
+				cid = val
 			end	
+		end
+		if cid then
+			showRdskey = showRdskey.."_"..cid
+			rdskey = rdskey.."_"..cid
 		end
 		local rest, errt = red:exec(
                         function(red)

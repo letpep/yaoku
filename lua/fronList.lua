@@ -6,7 +6,9 @@
     local args = nil
     local res = nil
     local err = nil
+	local rdskey ="contents"
 	local showRdskey = "content_shows_set"
+	local cid = nil
     local output = {}
     local value = {}
     local outputinfo = {}
@@ -18,16 +20,19 @@
     --table.insert(output,"cb")
 	local red = redis.new()
  	if "GET" == request_method then
-		local rdskey =nil
 		args  = ngx.req.get_uri_args()
 		for key,val in pairs(args) do
-                	if "key" == key  then
-                		rdskey = val
-			elseif "pageno" == key then
+			if "pageno" == key then
 				pageno = val
+			elseif "cid" == key then
+				cid = val
             elseif "pagecount" == key then
                         pagecount = val
 			end	
+		end
+		if cid then
+			showRdskey = showRdskey.."_"..cid
+			rdskey = rdskey.."_"..cid
 		end
 		local rest, errt = red:exec(
                         function(red)
@@ -44,6 +49,7 @@
                 )
 
 	end
+
 	local resd = json.encode(res)
 	for i, v in ipairs(res) do
 		local rdskey =""..v
