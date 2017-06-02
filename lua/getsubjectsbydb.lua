@@ -1,4 +1,4 @@
-# import module
+
 	local json = require "cjson"
 
     local res = ngx.location.capture('/postgres',

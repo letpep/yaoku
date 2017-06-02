@@ -1,4 +1,4 @@
-# import module
+
 	--说明:当使用get方法时为查询缓存方法,当使用post方法时为更新缓存方法,为了获取post请求参数需要在location中写入: lua_need_request_body on;
     local redis = require("resty.rediscli-letpep")
     local json = require("cjson")
