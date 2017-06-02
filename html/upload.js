@@ -22,10 +22,11 @@
 		$('.publish').click(function(){
 			var lurlval = $("#lurl").val();
 			var subjectval = $("#subject").val();
+			var categoryid = $("#categoryid").val();
 			  $.ajax({  
 					type: "POST",  
 					url:'http://codeh.xyz/publish',  
-					data:JSON.stringify({"lurl":lurlval,"subject":subjectval}),   
+					data:JSON.stringify({"lurl":lurlval,"subject":subjectval,"categoryid":categoryid}),
 					dataType:"json",
 					error: function(request) {  
 						alert("error");  
