@@ -23,7 +23,7 @@
 	if contentkey then
 		local ress, errs = red:exec(
 			function(red)
-				return red:get(rdskey)
+				return red:get(contentkey)
 			end
 		)
 		local valueinner = json.decode(ress)
