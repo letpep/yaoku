@@ -92,7 +92,7 @@ while true do
 end
 
 if ret_save then
-	local url = host.."/upload/"..filename
+	local url = "upload/"..filename
 	local result ="<script>top.document.getElementById('iframeid').value='"..url.."'</script>"
     ngx.say(url)
 end
