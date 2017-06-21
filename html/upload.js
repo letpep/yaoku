@@ -4,7 +4,7 @@
 		var form = new FormData(document.getElementById("upfile"))
 		  $.ajax({  
 			type: "POST",  
-			url:'http://codeh.xyz/upfile',  
+			url:'upfile',
 			data:form,   
 			processData:false,
 			contentType: false,
@@ -25,7 +25,7 @@
 			var categoryid = $("#categoryid").val();
 			  $.ajax({  
 					type: "POST",  
-					url:'http://codeh.xyz/publish',  
+					url:'publish',
 					data:JSON.stringify({"lurl":lurlval,"subject":subjectval,"categoryid":categoryid}),
 					dataType:"json",
 					error: function(request) {  

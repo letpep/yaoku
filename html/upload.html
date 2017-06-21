@@ -12,7 +12,7 @@
 
         function delete_row(subjectid) {
             $.get(
-                "http://codeh.xyz/contentdel?key="+subjectid,
+                "contentdel?key="+subjectid,
                 {},
                 function () {
                     generate_list();
@@ -26,7 +26,7 @@
 
         function generate_list() {
             $.get(
-                "http://codeh.xyz/frontList?key=contents&pageno=1&pagecount=10",
+                "frontList?key=contents&pageno=1&pagecount=10",
                 {},
                 function (data) {
                     var table_uploaded_files = $('#table_uploaded_files');
