@@ -317,7 +317,7 @@
 
         function loadSearchData(keyword, pageno, pagecount) {
             $.get(
-                "http://codeh.xyz/searchList?findkey="+keyword+"&pageno="+pageno+"&pagecount="+pagecount,
+                "searchList?findkey="+keyword+"&pageno="+pageno+"&pagecount="+pagecount,
                 {},
                 function (data) {
                     var htmlstring = '';

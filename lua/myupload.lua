@@ -10,7 +10,6 @@ if not form then
     ngx.log(ngx.ERR, "failed to new upload: ", err)
     ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
-local host = "http://codeh.xyz"
 local filename = nil
 form:set_timeout(1000)
 
