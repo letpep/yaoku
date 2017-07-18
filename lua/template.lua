@@ -11,5 +11,5 @@ local view = template.new "templateDemo.html"
 view.message = "Hello, World!"
 view:render()
 -- Using template.render
-template.render("view.html", { message = "Hello, World!" })
+template.render("templateDemo.html", { message = "Hello, World!" })
 
