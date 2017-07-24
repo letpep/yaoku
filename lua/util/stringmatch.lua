@@ -12,6 +12,6 @@ for v in sgmatch(stringv,'%d') do
     result =  result..v
 end
 
-local k,v1 =  sgmatch(stringv,'%d')
+local k,v1 =  sgmatch(stringv,'(%d)abc(%d)')
 
 ngx.say(k..v1)
