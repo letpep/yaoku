@@ -11,4 +11,7 @@ local result =''
 for v in sgmatch(stringv,'%d') do
     result =  result..v
 end
-ngx.say(result)
+
+local k,v1 =  sgmatch(stringv,'%d')
+
+ngx.say(k..v1)
