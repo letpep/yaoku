@@ -39,7 +39,7 @@ for i, v in ipairs(res) do
 end
 ngx.log(ngx.ERR,"allcount",totalnum)
 
-if totalnum >0 then
+if tonumber(totalnum) >0 then
     local sqlpage = "SELECT subject,url FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." "
     local resp, err, errno, sqlstate = db:query(sqlpage)
     for i, v in ipairs(resp) do
