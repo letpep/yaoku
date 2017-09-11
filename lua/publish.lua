@@ -102,17 +102,20 @@
 	local resultt = {}
 	resultt["res"]="ok"
 --插入数据库
+    ngx.log(ngx.ERR,"mysql:",mysql)
     local db = mysql:new()
 --local res = ngx.location.capture('/postgres',
 --	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')" } }
 --)
     sql = "insert into yaoku_subject(subject,url,subjectid,add_tdime,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')"
+    ngx.log(ngx.ERR,"db:",db)
     local res, err, errno, sqlstate = db:query(sql)
-    db:close()
+
     if not res then
         ngx.say(err)
         return {}
     end
+    db:close()
 --
 --local status = res.status
 ngx.log(ngx.ERR,"status",status)
