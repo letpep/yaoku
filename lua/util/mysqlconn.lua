@@ -33,6 +33,7 @@ function _M.new(self)
         return nil
     end
     db.close = close
+    ngx.log(ngx.ERR,"db2:",db)
     return db
 end
 
