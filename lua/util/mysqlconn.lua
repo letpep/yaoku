@@ -29,6 +29,7 @@ function _M.new(self)
     local ok, err, errno, sqlstate = db:connect(config)
 
     if not ok then
+        ngx.log(ngx.ERR,"notok:","true")
         return nil
     end
     db.close = close
