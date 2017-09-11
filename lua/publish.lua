@@ -27,8 +27,6 @@
 		rdssetkey_cay = rdssetkey.."_"..cid
 	end
 
-
-	ngx.log(ngx.ERR,"mysql:",mysql)
 	-- 字符串 split 分割
 	 string.split = function(s, p)
 	     local rt= {}
@@ -102,8 +100,8 @@
 	local resultt = {}
 	resultt["res"]="ok"
 --插入数据库
-    ngx.log(ngx.ERR,"mysql:",mysql)
     local db = mysql:new()
+	ngx.log(ngx.ERR,"db:",db)
 --local res = ngx.location.capture('/postgres',
 --	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')" } }
 --)
