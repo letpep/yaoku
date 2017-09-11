@@ -28,7 +28,7 @@
 	end
 
 
-	ngx.log(ngx.ERR,"categoryid:",cid)
+	ngx.log(ngx.ERR,"mysql:",mysql)
 	-- 字符串 split 分割
 	 string.split = function(s, p)
 	     local rt= {}
