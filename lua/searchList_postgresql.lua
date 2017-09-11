@@ -9,14 +9,12 @@ local json = require("cjson")
 local request_method = ngx.var.request_method
 local totalnum = 0
 local pageno = 1
-local mysql = require("mysqlconn")
 local pagecount =5
 local pagestart = 0
 local findkey =""
 local value = {}
 local outputinfo = {}
 local output = {}
-local db = mysql:new()
 if "GET" == request_method then
     local rdskey =nil
     args  = ngx.req.get_uri_args()
@@ -30,20 +28,17 @@ if "GET" == request_method then
         end
         end
 end
-local sqlall =  "SELECT count(1) FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%'"
+
 pagestart = (pageno-1)*pagecount
 local res = ngx.location.capture('/postgres',
     { args = {sql = "SELECT count(1) FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%';" } }
 )
-local res, err, errno, sqlstate = db:query(sql)
 
 local status = res.status
 local body = json.decode(res.body)
 for i, v in ipairs(body) do
     totalnum = v["count"]
 end
-ngx.log(ngx.ERR,"allcount",totalnum)
-db.close()
 if totalnum >0 then
 local resc = ngx.location.capture('/postgres',
     { args = {sql = "SELECT subject,url FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." ;" } }
