@@ -2,6 +2,8 @@
 	--说明:当使用get方法时为查询缓存方法,当使用post方法时为更新缓存方法,为了获取post请求参数需要在location中写入: lua_need_request_body on;
     local redis = require("resty.rediscli-letpep")
     local json = require("cjson")
+    --如下需要修改nginx.conf http部分的lua_package_path
+    local mysql = require("mysqlconn")
     local request_method = ngx.var.request_method
     local args = nil
     local rdskey = "contents"
@@ -100,9 +102,17 @@
 	local resultt = {}
 	resultt["res"]="ok"
 --插入数据库
+    local db = mysql:new()
 --local res = ngx.location.capture('/postgres',
 --	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')" } }
 --)
+    sql = "insert into yaoku_subject(subject,url,subjectid,add_tdime,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')"
+    local res, err, errno, sqlstate = db:query(sql)
+    db:close()
+    if not res then
+        ngx.say(err)
+        return {}
+    end
 --
 --local status = res.status
 ngx.log(ngx.ERR,"status",status)
