@@ -104,10 +104,11 @@
 --local res = ngx.location.capture('/postgres',
 --	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')" } }
 --)
-    sql = "insert into yaoku_subject(subject,url,subjectid,add_tdime,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')"
+    sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')"
     local res, err, errno, sqlstate = db:query(sql)
 
     if not res then
+		ngx.log(ngx.ERR,"not res","true")
         ngx.say(err)
         return {}
     end
