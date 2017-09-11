@@ -19,6 +19,7 @@ local _M = {}
 
 
 function _M.new(self)
+    ngx.log(ngx.ERR,"conn:","true")
     local db, err = mysql:new()
     if not db then
         return nil
