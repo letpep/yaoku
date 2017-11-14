@@ -9,14 +9,12 @@ local json = require("cjson")
 local request_method = ngx.var.request_method
 local totalnum = 0
 local pageno = 1
-local mysql = require("mysqlconn")
 local pagecount =5
 local pagestart = 0
 local findkey =""
 local value = {}
 local outputinfo = {}
 local output = {}
-local db = mysql:new()
 if "GET" == request_method then
     local rdskey =nil
     args  = ngx.req.get_uri_args()
@@ -30,21 +28,25 @@ if "GET" == request_method then
         end
         end
 end
-local sqlall =  "SELECT count(1) as count FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%'"
+
 pagestart = (pageno-1)*pagecount
-local res, err, errno, sqlstate = db:query(sqlall)
-local body = json.encode(res)
-for i, v in ipairs(res) do
+local res = ngx.location.capture('/postgres',
+    { args = {sql = "SELECT count(1) FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%';" } }
+)
+
+local status = res.status
+local body = json.decode(res.body)
+for i, v in ipairs(body) do
     totalnum = v["count"]
 end
-ngx.log(ngx.ERR,"allcount",totalnum)
-
-if tonumber(totalnum) >0 then
-    local sqlpage = "SELECT subject,url FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." "
-    local resp, err, errno, sqlstate = db:query(sqlpage)
-    for i, v in ipairs(resp) do
-        table.insert(value,v)
-    end
+if totalnum >0 then
+local resc = ngx.location.capture('/postgres',
+    { args = {sql = "SELECT subject,url FROM yaoku_subject where enable = 1 and subject like '%"..findkey.."%' limit "..pagecount .." offset "..pagestart.." ;" } }
+)
+local bodyc = json.decode(resc.body)
+for i, v in ipairs(bodyc) do
+    table.insert(value,v)
+end
 end
 outputinfo["value"] = value
 outputinfo["totalnum"] = totalnum
