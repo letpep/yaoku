@@ -17,7 +17,7 @@
                         return red:get(rdskey)
                         end
                         )
-		ngx.say(res)
+		ngx.print(res)
 	elseif "POST" == request_method then
 		local rdskey = nil
 		local rdsvalue = nil
