@@ -12,7 +12,8 @@ local config = {
     port = 3306,
     database = "yaoku",
     user = "root",
-    password = "root"
+    password = "root",
+    charset = 32
 }
 
 local _M = {}
