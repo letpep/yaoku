@@ -105,6 +105,7 @@
 --	{ args = {sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')" } }
 --)
     sql = "insert into yaoku_subject(subject,url,subjectid,add_time,categoryid,pubdate) values('"..subject.."','"..url.."','"..subjectkey.."',"..rdsscore..",'"..cid.."','"..date.."')"
+	local res1, err1, errno1, sqlstate1 = db:query("SET NAMES UTF8")
     local res, err, errno, sqlstate = db:query(sql)
 
     if not res then
