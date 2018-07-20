@@ -13,7 +13,7 @@ local config = {
     database = "yaoku",
     user = "root",
     password = "root",
-    charset = 32
+    charset = 33
 }
 
 local _M = {}
